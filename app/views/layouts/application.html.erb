@@ -9,9 +9,11 @@
   </head>
   
   <body>
-    <header>
-      <%= link_to "Teaching Notes", root_url, id: "logo" %>
-    </header>
-    <%= yield %>
+    <div class="wrapper">
+      <header>
+        <h1><%= link_to "Teaching Notes", root_url, id: "logo" %></h1>
+      </header>
+      <%= yield %>
+    </div>
   </body>
 </html>

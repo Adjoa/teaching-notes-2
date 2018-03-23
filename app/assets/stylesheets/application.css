@@ -14,49 +14,26 @@
  *= require_self
  */
  
- @media screen {
-  /* --- Reset Styles --- */
-  * {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  html, body {
-    height: 100%;
-    width: 100%;
-  }
-  
-  body {
-    background-color: #ffd069;
-    color: #333;
-    font-family: 'Raleway', sans-serif;
-    line-height: 18px;
-  }
-  
-  .logo {
-    font-family: 'Poller One', cursive;
-  }
-  
-  a:link {
-    text-decoration: none;
-  }
-
-  a:visited {
-      text-decoration: none;
-  }
-  
-  a:hover, a:active {
-     /*text-decoration: underline;*/
-    background-color: #c69800;
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-  }
-  
-  /*a:active {*/
-  /*    text-decoration: underline;*/
-  /*}*/
-  
+#logo {
+  font-family: 'Poller One', cursive;
 }
+
+body {
+  font-family: 'Raleway', sans-serif;
+}
+  
+a {
+ color: black;
+ text-decoration: none;
+}
+ 
+a:hover {
+ color: #dbd6d6;
+}
+
+#welcome h1, h2 { 
+  display: inline;
+  padding-left: 15px;
+}
+
+
