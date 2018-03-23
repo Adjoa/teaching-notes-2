@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TeachingNotes2</title>
+    <title>Teaching Notes</title>
     <%= csrf_meta_tags %>
-
+    <link href="https://fonts.googleapis.com/css?family=Poller+One|Raleway:500" rel="stylesheet"> 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  
   <body>
+    <header>
+      <%= link_to "Teaching Notes", root_url, id="logo" %>
+    </header>
     <%= yield %>
   </body>
 </html>
