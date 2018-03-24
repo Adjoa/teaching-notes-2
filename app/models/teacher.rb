@@ -6,5 +6,5 @@ class Teacher < ApplicationRecord
     
     has_secure_password
     validates :name, :username, :email, presence: true
-    validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: "is not formatted properly" }
+    # validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: "is not formatted properly" }
 end
