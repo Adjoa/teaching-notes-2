@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @teacher = Teacher.find_by(email: params[:email])
-    if @teacher.authenticate(params[:password])
+    @teacher = Teacher.find_by(email: params[:email]).authenticate(params[:password])
+    if @teacher
       current_user = @teacher.id
       redirect_to teacher_path(@teacher)
     else
