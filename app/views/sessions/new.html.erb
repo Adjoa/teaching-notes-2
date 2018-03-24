@@ -2,18 +2,18 @@
   <fieldset>
     <legend><h2>Log In</h2></legend>
     <table>
-      <%= form_for @teacher do |f| %>
+      <%= form_tag('/login') do %>
       <tr>
-        <td><%= f.label :email %></td>
-        <td><%= f.email_field :email %></td>
+        <td><%= label_tag 'email' %></td>
+        <td><%= email_field_tag(:email) %></td>
       </tr>
       <tr>
-        <td><%= f.label :password %></td>
-        <td><%= f.password_field :password %></td>
+        <td><%= label_tag 'password' %></td>
+        <td><%= password_field_tag(:password) %></td>
       </tr>
       <tr>
         <td>
-          <%= f.submit %>
+          <%= submit_tag 'Log In' %>
         </td>
       </tr>
       <% end %>
