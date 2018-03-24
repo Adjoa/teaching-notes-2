@@ -18,6 +18,11 @@
   font-family: 'Poller One', cursive;
 }
 
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
 body {
   font-family: 'Raleway', sans-serif;
 }
@@ -35,5 +40,25 @@ a:hover {
   display: inline;
   padding-left: 15px;
 }
+
+.form-wrapper {
+  max-width: 300px;
+}
+
+input[type="submit"] {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+}
+
+input[type="submit"]:hover{
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
 
 

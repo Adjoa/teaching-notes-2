@@ -3,5 +3,6 @@ class TeachersController < ApplicationController
   end
   
   def new
+    @teacher = Teacher.new
   end
 end
