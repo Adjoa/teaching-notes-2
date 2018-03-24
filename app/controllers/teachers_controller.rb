@@ -17,7 +17,6 @@ class TeachersController < ApplicationController
   end
   
   def show
-    #TO-DO: Add teacher profile info to show page
     @teacher = Teacher.find(current_user)
   end
   
