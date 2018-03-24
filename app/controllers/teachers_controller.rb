@@ -17,7 +17,7 @@ class TeachersController < ApplicationController
   end
   
   def show
-    @teacher = Teacher.find(current_user)
+    @teacher = Teacher.find(params[:id])
   end
   
   private
