@@ -11,7 +11,16 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><%= link_to "Teaching Notes", root_url, id: "logo" %></h1>
+        <nav>
+          <ul>
+            <li><h1><%= link_to "Teaching Notes", root_url, id: "logo" %></h1></li>
+            <% if !!session[:teacher_id] %>
+              <%= render "layouts/welcome" %>
+            <% else %>
+              <%= render "layouts/signed_in" %>
+            <% end %>
+          </ul>
+        </nav>
       </header>
       <%= yield %>
     </div>
