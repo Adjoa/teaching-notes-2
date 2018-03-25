@@ -34,6 +34,8 @@ gem 'devise'
 gem 'omniauth-facebook'
 # Bootstrap
 gem "bootstrap-sass", "~> 3.1.1"
+# Autoload dotenv in Rails.
+gem 'dotenv-rails', '~> 2.2', '>= 2.2.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
