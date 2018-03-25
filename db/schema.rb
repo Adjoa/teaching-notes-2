@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20180325035858) do
     t.string "name"
     t.datetime "time"
     t.string "venue"
-    t.integer "teacher_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["teacher_id"], name: "index_events_on_teacher_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "rehearsals", force: :cascade do |t|
@@ -52,12 +52,12 @@ ActiveRecord::Schema.define(version: 20180325035858) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.integer "teacher_id"
+    t.integer "user_id"
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["teacher_id"], name: "index_students_on_teacher_id"
+    t.index ["user_id"], name: "index_students_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

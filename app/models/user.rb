@@ -12,4 +12,9 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end      
   end
+  
+  has_many :students
+  has_many :entries, through: :students
+  has_many :events
+  has_many :rehearsals, through: :events
 end
