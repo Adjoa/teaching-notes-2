@@ -3,12 +3,12 @@
 
 
 DATA = {
-  :teacher_keys =>
-    ["name", "username", "email", "password_digest"],
-  :teachers => [
-      ["Peter Tosh", "peter.tosh", "peter.tosh@email.com", BCrypt::Password.create("password")],
-      ["Dawn Penn", "dawn.penn", "dawnsings@email.com", BCrypt::Password.create("password")],
-      ["Mark Anderson", "mark.anderson", "markstrings@email.com", BCrypt::Password.create("password")]
+  :user_keys =>
+    ["email", "password"],
+  :users => [
+      ["peter.tosh@email.com", BCrypt::Password.create("password")],
+      ["dawnsings@email.com", BCrypt::Password.create("password")],
+      ["markstrings@email.com", BCrypt::Password.create("password")]
     ],
   :student_keys =>
     ["name", "email"],
@@ -74,33 +74,33 @@ Itaque earum rerum hic tenetur a sapiente delectus. Ut aut reiciendis voluptatib
 
 def main
   puts "Populating database..."
-  create_teachers_students_and_entry
+  create_users_students_and_entry
   create_events_and_rehearsals
   puts "Done."
 end
 
-def create_teachers_students_and_entry
+def create_users_students_and_entry
   x = DATA[:students].size
-  y = DATA[:teachers].size
+  y = DATA[:users].size
   z = x / y
   
   next_student = 0
   
-  DATA[:teachers].each do |teacher|
+  DATA[:users].each do |user|
     
-    # Create a teacher
-    new_teacher = Teacher.new
-    teacher.each.with_index do |value, key|
-      new_teacher.send(DATA[:teacher_keys][key]+"=", value)
+    # Create a teacher (user)
+    new_user = User.new
+    user.each.with_index do |value, key|
+      new_user.send(DATA[:user_keys][key]+"=", value)
     end
-    new_teacher.save
-    puts "#{new_teacher.name} has been added."
+    new_user.save
+    puts "#{new_user.email} has been added."
     
-    # Divide the students evenly amongst the teachers
-    until new_teacher.students.count == z do
+    # Divide the students evenly amongst the teachers (users)
+    until new_user.students.count == z do
      
       # Create a student
-      new_student = new_teacher.students.build
+      new_student = new_user.students.build
       DATA[:students][next_student].each.with_index do |value, key|
         new_student.send(DATA[:student_keys][key]+"=", value)
       end
@@ -108,9 +108,9 @@ def create_teachers_students_and_entry
       
       # Give each new student an entry
       new_student.entries.create(DATA[:entry])
-      puts "#{new_student.name} is a student of #{new_teacher.name}."
+      puts "#{new_student.name} is a student of #{new_user.email}."
       
-      # Increment next_student so that no student has more than one teacher
+      # Increment next_student so that no student has more than one teacher (user)
       next_student += 1
 
     end
@@ -120,18 +120,18 @@ end
 
 def create_events_and_rehearsals
   x = DATA[:events].size
-  y = DATA[:teachers].size
+  y = DATA[:users].size
   z = x / y
   
   next_event = 0
   next_rehearsal = 0
   
-  Teacher.all.each do |teacher|
-    # Divide events evenly amongst the teachers
-    until teacher.events.count == z do
+  User.all.each do |user|
+    # Divide events evenly amongst the users
+    until user.events.count == z do
       
       # Create an event
-      new_event = teacher.events.build
+      new_event = user.events.build
       DATA[:events][next_event].each_with_index do |value, key|
         new_event.send(DATA[:events_keys][key]+"=", value)
       end
