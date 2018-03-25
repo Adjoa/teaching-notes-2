@@ -29,8 +29,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-# Validate format of email addresses
-gem 'validates_email_format_of', '~> 1.6', '>= 1.6.3'
+# User Authentication
+gem 'devise'
+# Bootstrap
+gem "bootstrap-sass", "~> 3.1.1"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
