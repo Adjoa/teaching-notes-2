@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 # User Authentication
 gem 'devise'
+gem 'omniauth-facebook'
 # Bootstrap
 gem "bootstrap-sass", "~> 3.1.1"
 
