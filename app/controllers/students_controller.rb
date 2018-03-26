@@ -33,6 +33,8 @@ class StudentsController < ApplicationController
   end
   
   def destroy
+    @student.destroy
+    redirect_to students_path, notice: "Student record for #{@student.name} was destroyed."
   end
   
   private
