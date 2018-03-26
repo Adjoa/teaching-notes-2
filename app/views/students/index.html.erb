@@ -3,11 +3,14 @@
   <tr>
     <th><strong>Name</strong></th>
     <th><strong>Email</strong></th>
+    <th><strong>Details</strong></th>
   </tr>
   <% @students.each do |student| %>
   <tr>
     <td><%= student.name %></td>
     <td><%= student.email %></td>
+    <td><%= link_to "View Info", student_path(student) %></td>
+    <td><%= link_to "Edit", edit_student_path(student) %></td>
   </tr>
   <% end %>
 </table>
