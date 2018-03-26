@@ -9,12 +9,16 @@ class StudentsController < ApplicationController
   end
   
   def new
+    user = User.find(current_user.id)
+    @student = user.students.build
   end
   
   def create
   end
   
   def edit
+    user = User.find(current_user.id)
+    @student = user.students.find(params[:id])
   end
   
   def create
