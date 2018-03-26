@@ -2,18 +2,20 @@
   <h2 class="navbar-text">Students</h2>
 </nav>
 
-<table>
-  <tr>
-    <th><strong>Name</strong></th>
-    <th><strong>Email</strong></th>
-    <th><strong>Details</strong></th>
-    <th></th>
-    <th>
-      <strong>
-      <%= link_to "Add Student", new_student_path, class: "btn btn-sm btn-primary" %>
-      </strong>
-    </th>
-  </tr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><strong>Name</strong></th>
+      <th scope="col"><strong>Email</strong></th>
+      <th scope="col"><strong>Details</strong></th>
+      <th scope="col"></th>
+      <th scope="col">
+        <strong>
+        <%= link_to "Add Student", new_student_path, class: "btn btn-sm btn-primary" %>
+        </strong>
+      </th>
+    </tr>
+  </thead>
   <% @students.each do |student| %>
   <tr>
     <td><%= student.name %></td>
