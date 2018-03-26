@@ -1,8 +1,20 @@
-<% @students.each do |student| %>
-<h3><%= student.name %></h3>
-<ul>
-  <% student.entries.each do |entry| %>
-    <li><%= entry.title %></li>
+<div id="accordion">
+  <% @students.each do |student| %>
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse-<%= student.id %>" aria-expanded="true" aria-controls="collapseOne">
+          <%= student.name %>
+        </button>
+      </h5>
+    </div>
+    <div id="collapse-<%= student.id %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <% student.entries.each do |entry| %>
+        <%= entry.title %>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <% end %>
-</ul>
-<% end %>
+</div>
