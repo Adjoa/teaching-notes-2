@@ -9,5 +9,8 @@
     <td><%= f.email_field :email %></td>
   </tr>
 </table>
+<strong>
+  <%= link_to "Cancel", students_path, class: "btn btn-sm btn-secondary" %>
+</strong>
 <%= f.submit %>
 <% end %>
