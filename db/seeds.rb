@@ -6,9 +6,9 @@ DATA = {
   :user_keys =>
     ["email", "password"],
   :users => [
-      ["peter.tosh@email.com", BCrypt::Password.create("password")],
-      ["dawnsings@email.com", BCrypt::Password.create("password")],
-      ["markstrings@email.com", BCrypt::Password.create("password")]
+      ["peter.tosh@email.com", "password"],
+      ["dawnsings@email.com", "password"],
+      ["markstrings@email.com", "password"]
     ],
   :student_keys =>
     ["name", "email"],
