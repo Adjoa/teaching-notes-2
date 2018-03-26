@@ -22,6 +22,11 @@
     <td><%= student.email %></td>
     <td><%= link_to "View Info", student_path(student) %></td>
     <td><%= link_to "Edit", edit_student_path(student) %></td>
+    <td>
+    <%= form_for student, method: :delete do |f| %>
+        <%= f.submit "Delete" %>
+    <% end %>
+    </td>
   </tr>
   <% end %>
 </table>
