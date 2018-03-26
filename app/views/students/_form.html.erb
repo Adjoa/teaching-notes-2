@@ -1,0 +1,12 @@
+<%= form_for student do |f| %>
+<table>
+  <tr>
+    <td><strong><%= f.label :name %></strong></td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td><strong><%= f.label :email %></strong></td>
+    <td><%= f.email_field :email %></td>
+  </tr>
+</table>
+<% end %>
