@@ -19,4 +19,10 @@
 body {
   padding-top: 70px;
   padding-bottom: 30px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.logo {
+    font-family: 'Poller One', cursive;
+    font-size: x-large;
 }
