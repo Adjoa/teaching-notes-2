@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <link href="https://fonts.googleapis.com/css?family=Poller+One|Raleway:500" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -22,6 +23,20 @@
         </p>
       </nav>
     </header>
+    <ul class="nav nav-tabs justify-content-center">
+      <li class="nav-item">
+        <%= link_to "Students", students_path, class: "nav-link active" %>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Entries</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Rehearsals</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Events</a>
+      </li>
+    </ul>
     <%= content_tag(:div, flash[:error], id: "flash_error", class: "alert alert-danger", role: "alert") if flash[:error] %>
     <%= content_tag(:div, flash[:notice], id: "flash_notice", class: "alert alert-success", role: "alert" ) if flash[:notice] %>
     <%= content_tag(:div, flash[:alert], id: "flash_alert", class: "alert alert-info", role: "alert") if flash[:alert] %>
