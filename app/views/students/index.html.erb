@@ -1,9 +1,18 @@
-<h2>Students</h2>
+<nav class="nav">
+  <h2 class="navbar-text">Students</h2>
+</nav>
+
 <table>
   <tr>
     <th><strong>Name</strong></th>
     <th><strong>Email</strong></th>
     <th><strong>Details</strong></th>
+    <th></th>
+    <th>
+      <strong>
+      <%= link_to "Add Student", new_student_path, class: "btn btn-sm btn-primary" %>
+      </strong>
+    </th>
   </tr>
   <% @students.each do |student| %>
   <tr>
