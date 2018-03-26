@@ -25,6 +25,11 @@ class StudentsController < ApplicationController
   end
   
   def update
+    if @student.update(student_params)
+      redirect_to student_path(@student), notice: 'Student record was successfully updated.'
+    else
+      render :edit
+    end
   end
   
   def destroy
