@@ -13,6 +13,12 @@ class StudentsController < ApplicationController
   end
   
   def create
+    @student = current_user.students.build(student_params)
+    if @student.save
+      redirect_to student_path(@student), notice: 'Student record was successfully created.'
+    else
+      render :new
+    end
   end
   
   def edit
