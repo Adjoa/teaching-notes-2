@@ -10,10 +10,12 @@
     </div>
     <div id="collapse-<%= student.id %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-        <%= link_to "Add New Entry", new_student_entry_path(student) %>
-        <% student.entries.each do |entry| %>
-        <%= link_to entry.title, student_entry_path(student, entry) %>
-        <% end %>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= link_to "Add New Entry", new_student_entry_path(student), class: "btn btn-sm btn-primary" %></li>
+          <% student.entries.each do |entry| %>
+          <li class="list-group-item"><%= link_to entry.title, student_entry_path(student, entry) %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
