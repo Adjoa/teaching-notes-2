@@ -1,5 +1,7 @@
-<h1><%= @entry.title %></h1>
-<p><%= @entry.content %></p>
-<strong>
-  <%= link_to "Back", students_path, class: "btn btn-sm btn-secondary" %>
-</strong>
+<div class="card w-75 mx-auto">
+  <div class="card-body">
+    <h5 class="card-title"><%= @entry.title %></h5>
+    <p class="card-text"><%= @entry.content %></p>
+    <%= link_to "Back", entries_path, class: "btn btn-sm btn-secondary" %>
+  </div>
+</div>
