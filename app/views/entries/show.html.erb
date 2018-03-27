@@ -1,7 +1,7 @@
-<div class="card w-75 mx-auto">
+<div class="card w-50 mx-auto">
   <div class="card-body">
     <h5 class="card-title"><%= @entry.title %></h5>
     <p class="card-text"><%= @entry.content %></p>
-    <%= link_to "Back", entries_path, class: "btn btn-sm btn-secondary" %>
+    <%= link_to "Back", student_entries_path(@student), class: "btn btn-sm btn-secondary" %>
   </div>
 </div>
