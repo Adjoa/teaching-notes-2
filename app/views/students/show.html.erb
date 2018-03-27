@@ -15,12 +15,14 @@
   </table>
 </fieldset>
 
-<h2>Entries</h2>
-<div class="card-body">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><%= link_to "Add New Entry", new_student_entry_path(@student, @entry), class: "btn btn-sm btn-primary" %></li>
-    <% @student.entries.each do |entry| %>
-    <li class="list-group-item"><%= link_to entry.title, entry_path(entry) %></li>
-    <% end %>
-  </ul>
+<div class="card w-50">
+  <div class="card-body">
+    <h5 class="card-title">Entries</h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><%= link_to "Add New Entry", new_student_entry_path(@student, @entry), class: "btn btn-sm btn-primary" %></li>
+      <% @student.entries.each do |entry| %>
+      <li class="list-group-item"><%= link_to entry.title, student_entry_path(@student, entry) %></li>
+      <% end %>
+    </ul>
+  </div>
 </div>
