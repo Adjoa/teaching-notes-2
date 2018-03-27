@@ -3,10 +3,14 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   root 'students#index'
+  # resources :students do
+  #   resources :entries, only: [:show, :new, :create]
+  # end
+  
   resources :students do
-    resources :entries, only: [:show, :new, :create]
+   resources :entries, only: [:index, :new, :create]
   end
   
-  resources :entries, only: [:index]
+  resources :entries, only: [:show, :edit, :update, :destroy]
   
 end
