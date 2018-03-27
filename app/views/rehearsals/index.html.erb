@@ -1,0 +1,23 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col"><strong>Time</strong></th>  
+      <th scope="col"><strong>Rehearsal</strong></th>  
+      <th scope="col"><strong>Venue</strong></th>
+      <th scope="col">
+        <strong>
+          
+        </strong>
+      </th> 
+    </tr>
+  </thead>
+  <% @rehearsals.each do |rehearsal| %>
+  <tr>
+    <td><%= rehearsal.time %></td>
+    <td><%= rehearsal.event.name %></td>
+    <td><%= rehearsal.venue %></td>
+    <form>
+    </form>
+  </tr>
+  <% end %>
+</table>
