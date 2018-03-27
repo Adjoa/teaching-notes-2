@@ -1,0 +1,14 @@
+<%= form_for entry do |f| %>
+<table>
+  <tr>
+    <td><%= f.text_field :title, placeholder: "Entry Title" %></td>
+  </tr>
+  <tr>
+    <td><%= f.text_area :content, placeholder: "Start writing..." %></td>
+  </tr>
+</table>
+<strong>
+  <%= link_to "Cancel", entries_path, class: "btn btn-sm btn-secondary" %>
+</strong>
+<%= f.submit %>
+<% end %>
