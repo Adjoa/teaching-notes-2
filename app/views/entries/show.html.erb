@@ -3,5 +3,6 @@
     <h5 class="card-title"><%= @entry.title %></h5>
     <p class="card-text"><%= @entry.content %></p>
     <%= link_to "Back", student_path(@entry.student), class: "btn btn-sm btn-secondary" %>
+    <%= link_to "Edit", edit_entry_path(@entry), class: "btn btn-sm btn-primary" %>
   </div>
 </div>
