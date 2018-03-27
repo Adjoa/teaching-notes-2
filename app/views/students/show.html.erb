@@ -21,7 +21,12 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item"><%= link_to "Add New Entry", new_student_entry_path(@student, @entry), class: "btn btn-sm btn-primary" %></li>
       <% @student.entries.each do |entry| %>
-      <li class="list-group-item"><%= link_to entry.title, student_entry_path(@student, entry) %></li>
+      <li class="list-group-item">
+        <%= link_to entry.title, student_entry_path(@student, entry) %>
+        <%= form_for entry, method: :delete do |f| %>
+        <%= f.submit "Delete" %>
+        <% end %>
+        </li>
       <% end %>
     </ul>
   </div>
