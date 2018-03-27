@@ -11,7 +11,7 @@
     <div id="collapse-<%= student.id %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
         <% student.entries.each do |entry| %>
-        <%= entry.title %>
+        <%= link_to entry.title, student_entry_path(student, entry) %>
         <% end %>
       </div>
     </div>
