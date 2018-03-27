@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   # end
   
   resources :students do
-   resources :entries, only: [:index, :new, :create]
+   resources :entries, only: [:index, :new, :create, :show]
   end
   
-  resources :entries, only: [:show, :edit, :update, :destroy]
+  resources :entries, only: [:edit, :update, :destroy]
   
 end
