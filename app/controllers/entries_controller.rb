@@ -4,19 +4,20 @@ class EntriesController < ApplicationController
   end
   
   def show
+    @student = Student.find(params[:student_id])
     @entry = Entry.find(params[:id])
   end
   
   def new
-    student = current_user.students.find(params[:student_id])
-    @entry = student.entries.build
+    @student = current_user.students.find(params[:student_id])
+    @entry = @student.entries.build
   end
   
   def create
-    student = current_user.students.find(params[:student_id])
-    @entry = student.entries.new(entry_params)
+    @student = current_user.students.find(params[:student_id])
+    @entry = @student.entries.new(entry_params)
     if @entry.save
-      redirect_to entries_path, notice: "Added new entry for #{student.name}." 
+      redirect_to student_entries_path(@student), notice: "Added new entry for #{@student.name}." 
     else
       render :new
     end
