@@ -1,2 +1,28 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col"><strong>Time</strong></th>  
+      <th scope="col"><strong>Name</strong></th>  
+      <th scope="col"><strong>Venue</strong></th>
+      <th scope="col"><strong>Rehearsals</strong></th>
+      <th scope="col">
+        <strong>
+          <%#= link_to "Add Event", new_event_path, class: "btn btn-sm btn-primary" %>
+        </strong>
+      </th> 
+    </tr>
+  </thead>
+  <% @events.each do |event| %>
+  <tr>
+    <td><%= event.time.strftime("%B %-d, %Y") %> at <%= event.time.strftime("%k:%M")%></td>
+    <td><%= link_to event.name, event_path(event) %></td>
+    <td><%= event.venue %></td>
+    <td><%= event.rehearsals.count %></td>
+    <td>
+    <%#= form_for event, method: :delete do |f| %>
+      <%#= f.submit "Delete" %>
+    <%# end %>
+    </td>
+  </tr>
+  <% end %>
+</table>
