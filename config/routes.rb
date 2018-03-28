@@ -13,6 +13,4 @@ Rails.application.routes.draw do
   resources :rehearsals
   
   resources :events
-  
-  resources :attendances, only: [:update]
 end
