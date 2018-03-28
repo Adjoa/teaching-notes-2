@@ -16,8 +16,11 @@
     <td><%= rehearsal.time.strftime("%B %-d, %Y") %> at <%= rehearsal.time.strftime("%k:%M")%></td>
     <td><%= link_to rehearsal.event.name, rehearsal_path(rehearsal) %></td>
     <td><%= rehearsal.venue %></td>
-    <form>
-    </form>
+    <td>
+    <%= form_for rehearsal, method: :delete do |f| %>
+      <%= f.submit "Delete" %>
+    <% end %>
+    </td>
   </tr>
   <% end %>
 </table>
