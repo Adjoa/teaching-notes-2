@@ -23,6 +23,7 @@ class StudentsController < ApplicationController
   end
   
   def edit
+    @student = current_user.students.find(params[:id])
   end
   
   def update
