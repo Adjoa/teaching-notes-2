@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :entries, only: [:edit, :update, :destroy]
   
   resources :rehearsals
+  
+  resources :events
 end
