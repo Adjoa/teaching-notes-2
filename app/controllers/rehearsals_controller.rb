@@ -31,6 +31,12 @@ class RehearsalsController < ApplicationController
     redirect_to rehearsal_path(@rehearsal), notice: "Rehearsal for #{@rehearsal.event.name} was successfully updated."
   end
   
+  def destroy
+    @rehearsal = Rehearsal.find(params[:id])
+    @rehearsal.destroy
+    redirect_to rehearsals_path, notice: "Rehearsal for #{@rehearsal.event.name} was destroyed."
+  end
+  
   private
   
   def rehearsal_params
