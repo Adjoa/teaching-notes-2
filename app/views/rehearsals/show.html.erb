@@ -34,7 +34,20 @@
         <% end %>
         </td>
         <td>
-        <!--Attended-->
+        <!--Toggle value of 'went' boolean-->
+        <% if @rehearsal.students_attended.include?(student) %>
+           <%= form_for @rehearsal, method: :patch do |f| %>
+            <%= f.hidden_field :student_id, value: student.id %>
+            <%= f.hidden_field :went, value: false %>
+            <%= f.submit "Yes" %>
+          <% end %>
+        <% else %>
+         <%= form_for @rehearsal, method: :patch do |f| %>
+            <%= f.hidden_field :student_id, value: student.id %>
+            <%= f.hidden_field :went, value: true %>
+            <%= f.submit "No" %>
+          <% end %>
+        <% end %>
         </td>
       </tr>
       <% end %>
