@@ -13,7 +13,7 @@
   </head>
   
   <body>
-    
+    <div class="container">
     <header>
       <nav class="navbar navbar-fixed-top navbar-dark bg-primary">
         <%= link_to "Teaching Notes", root_url, :class => 'navbar-brand logo' %>
@@ -39,7 +39,7 @@
       </li>
     </ul>
     <% end %>
-    <div class="container">
+    
     <%= content_tag(:div, flash[:error], id: "flash_error", class: "alert alert-danger", role: "alert") if flash[:error] %>
     <%= content_tag(:div, flash[:notice], id: "flash_notice", class: "alert alert-success", role: "alert" ) if flash[:notice] %>
     <%= content_tag(:div, flash[:alert], id: "flash_alert", class: "alert alert-info", role: "alert") if flash[:alert] %>
