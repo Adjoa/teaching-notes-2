@@ -9,4 +9,8 @@ class Rehearsal < ApplicationRecord
       Student.find(attendance.student_id)
     end
   end
+  
+  def count_attending
+    self.students_attending.count
+  end
 end
