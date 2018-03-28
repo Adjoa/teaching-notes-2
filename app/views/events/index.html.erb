@@ -19,9 +19,9 @@
     <td><%= event.venue %></td>
     <td><%= event.rehearsals.count %></td>
     <td>
-    <%#= form_for event, method: :delete do |f| %>
-      <%#= f.submit "Delete" %>
-    <%# end %>
+    <%= form_for event, method: :delete do |f| %>
+      <%= f.submit "Delete" %>
+    <% end %>
     </td>
   </tr>
   <% end %>
