@@ -15,7 +15,7 @@
         <%= f.datetime_select(:time, default: Date.today, ampm: true, class: "form-control" ) %>
       </div>
     <strong>
-    <%= link_to "Cancel", rehearsal_path(@rehearsal), class: "btn btn-sm btn-secondary" %>
+    <%= link_to "Cancel", rehearsals_path, class: "btn btn-sm btn-secondary" %>
     </strong>
     <%= f.submit %>
     </fieldset>
