@@ -6,14 +6,14 @@
       <th scope="col"><strong>Venue</strong></th>
       <th scope="col">
         <strong>
-          
+          <%= link_to "Add Rehearsal", new_rehearsal_path, class: "btn btn-sm btn-primary" %>
         </strong>
       </th> 
     </tr>
   </thead>
   <% @rehearsals.each do |rehearsal| %>
   <tr>
-    <td><%= rehearsal.time %></td>
+    <td><%= rehearsal.time.strftime("%B %-d, %Y") %> at <%= rehearsal.time.strftime("%k:%M")%></td>
     <td><%= rehearsal.event.name %></td>
     <td><%= rehearsal.venue %></td>
     <form>
