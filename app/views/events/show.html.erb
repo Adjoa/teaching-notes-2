@@ -1,2 +1,9 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<div class="card w-50 mx-auto">
+  <div class="card-body">
+    <h5 class="card-title"><%= @event.name %></h5>
+    <p class="card-text"><%= @event.time.strftime("%B %-d, %Y") %> at <%= @event.time.strftime("%k:%M")%></p>
+    <p class="card-text"><%= @event.venue %></p>
+    <%= link_to "Back", events_path(@event), class: "btn btn-sm btn-secondary" %>
+    <%= link_to "Edit", edit_event_path(@event), class: "btn btn-sm btn-primary" %>
+  </div>
+</div>
