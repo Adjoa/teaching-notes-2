@@ -7,12 +7,11 @@ class RehearsalsController < ApplicationController
     @rehearsal = Rehearsal.new
   end
   
-  
   def create
     event = Event.find(params[:rehearsal][:event_id])
     @rehearsal = event.rehearsals.build(rehearsal_params)
     if @rehearsal.save
-      redirect_to rehearsals_path, notice: "Sucessfully created new rehearsal for #{event.name}"
+      redirect_to rehearsals_path, notice: "Added new rehearsal for #{event.name}."
     else
       render :new
     end
@@ -20,6 +19,16 @@ class RehearsalsController < ApplicationController
   
   def show
     @rehearsal = Rehearsal.find(params[:id])
+  end
+  
+  def edit
+    @rehearsal = Rehearsal.find(params[:id])
+  end 
+  
+  def update
+    @rehearsal = Rehearsal.find(params[:id])
+    @rehearsal.update(rehearsal_params)
+    redirect_to rehearsal_path(@rehearsal), notice: "Rehearsal for #{@rehearsal.event.name} was successfully updated."
   end
   
   private
