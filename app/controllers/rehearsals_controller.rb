@@ -1,6 +1,6 @@
 class RehearsalsController < ApplicationController
   def index
-    @rehearsals = Rehearsal.all
+    @rehearsals = current_user.rehearsals
   end
   
   def new
