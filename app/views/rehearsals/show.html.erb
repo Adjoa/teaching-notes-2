@@ -5,5 +5,39 @@
     <p class="card-text"><%= @rehearsal.venue %></p>
     <%= link_to "Back", rehearsals_path(@rehearsal), class: "btn btn-sm btn-secondary" %>
     <%= link_to "Edit", edit_rehearsal_path(@rehearsal), class: "btn btn-sm btn-primary" %>
+    <br></br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col"><strong>Student Name</strong></th>  
+          <th scope="col"><strong>Attending</strong></th>
+          <th scope="col"><strong>Attended</strong></th>
+        </tr>
+      </thead>
+      <% @students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td>
+        <!--Toggle value of 'going' boolean-->
+        <% if @rehearsal.students_attending.include?(student) %>
+           <%= form_for @rehearsal, method: :patch do |f| %>
+            <%= f.hidden_field :student_id, value: student.id %>
+            <%= f.hidden_field :going, value: false %>
+            <%= f.submit "Yes" %>
+          <% end %>
+        <% else %>
+         <%= form_for @rehearsal, method: :patch do |f| %>
+            <%= f.hidden_field :student_id, value: student.id %>
+            <%= f.hidden_field :going, value: true %>
+            <%= f.submit "No" %>
+          <% end %>
+        <% end %>
+        </td>
+        <td>
+        <!--Attended-->
+        </td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 </div>
