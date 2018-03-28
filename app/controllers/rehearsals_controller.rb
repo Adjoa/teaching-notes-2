@@ -28,22 +28,20 @@ class RehearsalsController < ApplicationController
   end 
   
   def update
-    # raise params.inspect
     @rehearsal = Rehearsal.find(params[:id])
     student_id = params[:rehearsal][:student_id]
     attending = params[:rehearsal][:going]
-    # attended = params[:rehearsal][:went]
+    attended = params[:rehearsal][:went]
     
     if student_id
       attendance = Attendance.find_or_create_by(rehearsal_id: @rehearsal.id, student_id: student_id)
       case 
       when !params[:rehearsal][:going].nil?
         attendance = attendance.update(going: attending)
-        binding.pry
         redirect_to rehearsal_path(@rehearsal)
-      # when params[:rehearsal][:went]
-      #   attendance = attendance.update(went: attended)
-      #   redirect_to rehearsal_path(@rehearsal)
+      when !params[:rehearsal][:went].nil?
+        attendance = attendance.update(went: attended)
+        redirect_to rehearsal_path(@rehearsal)
       end
     else
       @rehearsal.update(rehearsal_params)
