@@ -1,0 +1,24 @@
+<div class="card w-75 mx-auto">
+  <div class="card-body">
+    <%= form_for @rehearsal do |f| %>
+    <fieldset>
+      <div class="form-group row">
+        <%= f.label "Rehearsal for" %>
+        <%= f.collection_select :event_id, Event.all, :id, :name, :with_css_classes => "form-control" %>
+      </div>
+      <div class="form-group row col-md-8">
+        <%= f.label :venue %>
+        <%= f.text_field :venue, class: "form-control col-md-6" %>
+      </div>
+      <div class="form-group row col-md-8">
+        <%= f.label :time %>
+        <%= f.datetime_select(:time, default: Date.today, ampm: true, class: "form-control" ) %>
+      </div>
+    <strong>
+    <%= link_to "Cancel", rehearsal_path(@rehearsal), class: "btn btn-sm btn-secondary" %>
+    </strong>
+    <%= f.submit %>
+    </fieldset>
+    <% end %>
+  </div>
+</div>
