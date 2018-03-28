@@ -1,0 +1,9 @@
+<div class="card w-50 mx-auto">
+  <div class="card-body">
+    <h5 class="card-title">Rehearsal for <%= @rehearsal.event.name %></h5>
+    <p class="card-text"><%= @rehearsal.time.strftime("%B %-d, %Y") %> at <%= @rehearsal.time.strftime("%k:%M")%></p>
+    <p class="card-text"><%= @rehearsal.venue %></p>
+    <%= link_to "Back", rehearsals_path(@rehearsal), class: "btn btn-sm btn-secondary" %>
+    <%= link_to "Edit", edit_rehearsal_path(@rehearsal), class: "btn btn-sm btn-primary" %>
+  </div>
+</div>
