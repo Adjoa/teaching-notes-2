@@ -1,0 +1,11 @@
+<%= form_for @rehearsal do |f| %>
+  <%= f.collection_select :event_id, Event.all, :id, :name %>
+  
+  <%= f.label :venue %>
+  <%= f.text_field :venue %>
+  
+  <%= f.label :time %>
+  <%= f.datetime_select(:time, default: Date.today, ampm: true) %>
+  
+<%= f.submit %>
+<% end %>
