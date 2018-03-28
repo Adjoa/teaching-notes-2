@@ -18,6 +18,10 @@ class RehearsalsController < ApplicationController
     end
   end
   
+  def show
+    @rehearsal = Rehearsal.find(params[:id])
+  end
+  
   private
   
   def rehearsal_params
