@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'students#index'
   
   resources :students do
-   resources :entries
+   resources :entries, except[:index]
   end
   
   resources :rehearsals
