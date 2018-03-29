@@ -7,8 +7,8 @@ class EntriesController < ApplicationController
   end
   
   def new
-    @student = current_user.students.find(params[:student_id])
-    @entry = @student.entries.build
+    student = current_user.students.find(params[:student_id])
+    @entry = student.entries.build
   end
   
   def create
@@ -22,8 +22,10 @@ class EntriesController < ApplicationController
   end
   
   def edit
-    @entry = Entry.find(params[:id])
-    @student = @entry.student
+    # @entry = Entry.find(params[:id])
+    # @student = @entry.student
+    student = current_user.students.find(params[:student_id])
+    @entry = student.entries.find(params[:id])
   end 
   
   def update
