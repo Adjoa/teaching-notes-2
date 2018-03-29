@@ -4,6 +4,8 @@ class Rehearsal < ApplicationRecord
   has_many :students, through: :attendances
   delegate :user, :to => :event, :allow_nil => true
   
+  validates :venue, presence: true
+  
   def students_attending
     self.attendances.going.collect do |attendance|
       Student.find(attendance.student_id)
