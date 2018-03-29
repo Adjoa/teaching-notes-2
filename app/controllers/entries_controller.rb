@@ -1,9 +1,10 @@
 class EntriesController < ApplicationController
+  before_action :set_entry, only: [:show, :edit, :update, :destroy]
+  
   def index
   end
   
   def show
-    @entry = Entry.find(params[:id])
   end
   
   def new
@@ -22,14 +23,9 @@ class EntriesController < ApplicationController
   end
   
   def edit
-    # @entry = Entry.find(params[:id])
-    # @student = @entry.student
-    student = current_user.students.find(params[:student_id])
-    @entry = student.entries.find(params[:id])
   end 
   
   def update
-    @entry = Entry.find(params[:id])
     if @entry.update(entry_params)
       redirect_to student_entry_path(@entry.student, @entry), notice: "Entry was successfully updated."
     else
@@ -38,12 +34,24 @@ class EntriesController < ApplicationController
   end 
   
   def destroy
-    @entry = Entry.find(params[:id])
     @entry.destroy
     redirect_to student_path(@entry.student), notice: "#{@entry.title} was destroyed."
   end
   
   private
+  
+  def set_entry
+    begin
+      student = current_user.students.find(params[:student_id])
+      @entry = student.entries.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      @entry = nil
+      redirect_to student_path(student), notice: "Record not found."
+    else
+      student = current_user.students.find(params[:student_id])
+      @entry = student.entries.find(params[:id])
+    end
+  end
   
   def entry_params
     params.require(:entry).permit(:title, :content)
