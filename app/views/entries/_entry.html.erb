@@ -1,0 +1,7 @@
+<li class="list-group-item">
+  <%= link_to entry.title, student_entry_path(entry.student, entry) %>
+  
+  <%= form_for [entry.student, entry], method: :delete do |f| %>
+  <%= f.submit "Delete" %>
+  <% end %>
+</li>
