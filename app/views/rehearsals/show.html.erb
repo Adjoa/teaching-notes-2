@@ -11,7 +11,7 @@
         <tr>
           <th scope="col"><strong>Student Name</strong></th>  
           <th scope="col"><strong>Attending</strong></th>
-          <th scope="col"><strong>Attended</strong></th>
+          <!--<th scope="col"><strong>Attended</strong></th>-->
         </tr>
       </thead>
       <% @students.each do |student| %>
@@ -27,11 +27,11 @@
         </td>
         <td>
         <!--Toggle value of 'went' boolean-->
-        <% if @rehearsal.students_attended.include?(student) %>
-          <%= render partial: "went_to_rehearsal", locals: { student_id: student.id, went: false, button_text: "Yes"} %>
-        <% else %>
-          <%= render partial: "went_to_rehearsal", locals: { student_id: student.id, went: true, button_text: "No"} %>
-        <% end %>
+        <%# if @rehearsal.students_attended.include?(student) %>
+          <%#= render partial: "went_to_rehearsal", locals: { student_id: student.id, went: false, button_text: "Yes"} %>
+        <%# else %>
+          <%#= render partial: "went_to_rehearsal", locals: { student_id: student.id, went: true, button_text: "No"} %>
+        <%# end %>
         </td>
       </tr>
       <% end %>
