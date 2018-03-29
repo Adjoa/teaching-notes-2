@@ -36,17 +36,6 @@ class EntriesController < ApplicationController
   end
   
   private
-  
-  def set_student
-    begin 
-      @student = current_user.students.find(params[:student_id])
-    rescue ActiveRecord::RecordNotFound
-      @student = nil
-      redirect_to student_path(@student), notice: "Student record not found."
-    else
-      @student = current_user.students.find(params[:student_id])
-    end
-  end
     
   def set_entry
     student = current_user.students.find_by(id: params[:student_id])
