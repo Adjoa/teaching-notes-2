@@ -42,7 +42,14 @@ class StudentsController < ApplicationController
   private
   
   def set_student
-    @student = current_user.students.find(params[:id])
+    begin
+      @student = current_user.students.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      @student = nil
+      redirect_to students_path, notice: "Student record not found."
+    else
+      @student = current_user.students.find(params[:id])
+    end
   end
   
   def student_params
