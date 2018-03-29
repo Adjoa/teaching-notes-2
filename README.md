@@ -1,24 +1,29 @@
-# README
+# Teaching Notes 2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A student management tool for music teachers built with Ruby on Rails[v 5.1.5].
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+To take this application for a test drive, run the following from the command-line:
+```
+  $ git clone https://github.com/Adjoa/teaching-notes-2.git
+  $ cd teaching-notes-2
+  $ bundle install
+  $ rake db:migrate
+  $ rake db:seed
+  $ rails server
+```
+Then navigate to the IP address displayed.
 
-* System dependencies
+## Contributing
 
-* Configuration
+Bug reports and pull requests are welcome on GitHub at https://github.com/Adjoa/teaching-notes-2.
 
-* Database creation
+## Authors
 
-* Database initialization
+* [**Adjoa Darien** ](https://github.com/Adjoa)
 
-* How to run the test suite
+## License
 
-* Services (job queues, cache servers, search engines, etc.)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-* Deployment instructions
-
-* ...
