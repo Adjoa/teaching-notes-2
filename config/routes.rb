@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   root 'students#index'
   
   resources :students do
-   resources :entries, only: [:index, :new, :create, :show]
+   resources :entries, only: [:index, :new, :create, :show, :edit, :update]
   end
   
-  resources :entries, only: [:edit, :update, :destroy]
+  resources :entries, only:  [:destroy]
   
   resources :rehearsals
   
