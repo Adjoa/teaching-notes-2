@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  
   def index
     @events = current_user.events
   end
@@ -17,15 +19,12 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = current_user.events.find(params[:id])
   end
 
   def edit
-    @event = current_user.events.find(params[:id])
   end
 
   def update
-    @event = current_user.events.find(params[:id])
     @event.update(event_params)
     if @event.save
       redirect_to events_path, notice: "Event was successfully upddated."
@@ -35,12 +34,21 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    event = current_user.events.find(params[:id])
-    event.destroy
-    redirect_to events_path, notice: "#{event.name} record was destroyed."
+    @event.destroy
+    redirect_to events_path, notice: "#{@event.name} record was destroyed."
   end
   
   private
+  def set_event
+    begin
+      @event = current_user.events.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      @event = nil
+      redirect_to events_path, notice: "Event record not found"
+    else
+      @event = current_user.events.find(params[:id])
+    end
+  end
   
   def event_params
     params.require(:event).permit(:name, :time, :venue)
