@@ -7,6 +7,7 @@ class StudentsController < ApplicationController
   
   def show
     @entry = current_user.students.find(params[:id]).entries.build
+    @entries = current_user.students.find(params[:id]).entries
   end
   
   def new
