@@ -29,7 +29,7 @@
       <% @student.entries.each do |entry| %>
       <li class="list-group-item">
         <%= link_to entry.title, student_entry_path(@student, entry) %>
-        <%= form_for entry, method: :delete do |f| %>
+        <%= form_for [entry.student, entry], method: :delete do |f| %>
         <%= f.submit "Delete" %>
         <% end %>
         </li>
