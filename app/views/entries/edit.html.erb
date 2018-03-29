@@ -1,17 +1,1 @@
-<div class="card w-50 mx-auto">
-  <div class="card-body">
-  <fieldset>
-    <legend><strong><%= @student.name %></strong></legend>
-    <%= form_for @entry do |f| %>
-    <div class="form-group">
-    <%= f.text_field :title, class: "form-control", placeholder: "Entry Title" %>
-    </div>
-    <div class="form-group">
-    <%= f.text_area :content, class: "form-control", placeholder: "Start writing..." %>
-    </div>
-    <%= link_to "Cancel", student_path(@entry.student), class: "btn btn-sm btn-secondary" %>   
-    <%= f.submit %>
-    <% end %>
-  </fieldset>
-  </div>
-</div>
+<%= render partial: "form", locals: { entry: @entry } %>
