@@ -37,17 +37,32 @@ class EntriesController < ApplicationController
   
   private
   
-  def set_entry
-    begin
-      # begin 
-      student = current_user.students.find(params[:student_id])
-      @entry = student.entries.find(params[:id])
+  def set_student
+    begin 
+      @student = current_user.students.find(params[:student_id])
     rescue ActiveRecord::RecordNotFound
-      @entry = nil
-      redirect_to student_path(student), notice: "Record not found."
+      @student = nil
+      redirect_to student_path(@student), notice: "Student record not found."
     else
-      student = current_user.students.find(params[:student_id])
-      @entry = student.entries.find(params[:id])
+      @student = current_user.students.find(params[:student_id])
+    end
+  end
+    
+  def set_entry
+    student = current_user.students.find_by(id: params[:student_id])
+    
+    if student  
+      begin
+        @entry = student.entries.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        @entry = nil
+        redirect_to student_path(student), notice: "Record not found."
+      else
+        student = current_user.students.find(params[:student_id])
+        @entry = student.entries.find(params[:id])
+      end
+    else
+      redirect_to students_path, notice: "Record does not exist"
     end
   end
   
