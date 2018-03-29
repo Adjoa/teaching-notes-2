@@ -27,7 +27,7 @@ class EntriesController < ApplicationController
   end 
   
   def update
-    @entry =Entry.find(params[:id])
+    @entry = Entry.find(params[:id])
     if @entry.update(entry_params)
       redirect_to student_entry_path(@entry.student, @entry), notice: "Entry was successfully updated."
     else
