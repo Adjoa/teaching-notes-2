@@ -1,0 +1,5 @@
+<%= form_for @rehearsal, method: :patch do |f| %>
+  <%= f.hidden_field :student_id, value: student_id %>
+  <%= f.hidden_field :went, value: went %>
+  <%= f.submit button_text %>
+<% end %>
