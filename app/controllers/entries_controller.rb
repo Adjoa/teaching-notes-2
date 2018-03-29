@@ -1,9 +1,6 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
   
-  def index
-  end
-  
   def show
   end
   
@@ -42,6 +39,7 @@ class EntriesController < ApplicationController
   
   def set_entry
     begin
+      # begin 
       student = current_user.students.find(params[:student_id])
       @entry = student.entries.find(params[:id])
     rescue ActiveRecord::RecordNotFound
