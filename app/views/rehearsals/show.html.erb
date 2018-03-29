@@ -16,7 +16,7 @@
       </thead>
       <% @students.each do |student| %>
       <tr>
-        <td><%= student.name %></td>
+        <td><%= link_to student.name, students_path(student) %></td>
         <td>
         <!--Toggle value of 'going' boolean-->
         <% if @rehearsal.students_attending.include?(student) %>
