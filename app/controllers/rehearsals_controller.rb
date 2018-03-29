@@ -1,4 +1,6 @@
 class RehearsalsController < ApplicationController
+  before_action :set_rehearsal, only: [:show, :edit, :update, :destroy]
+  
   def index
     @rehearsals = current_user.rehearsals
     @students = current_user.students
@@ -19,45 +21,54 @@ class RehearsalsController < ApplicationController
   end
   
   def show
-    @rehearsal = Rehearsal.find(params[:id])
     @students = current_user.students
   end
   
   def edit
-    @rehearsal = Rehearsal.find(params[:id])
   end 
   
   def update
-    @rehearsal = Rehearsal.find(params[:id])
-    student_id = params[:rehearsal][:student_id]
-    attending = params[:rehearsal][:going]
-    attended = params[:rehearsal][:went]
+    student_id = rehearsal_params[:student_id]
+    attending = rehearsal_params[:going]
+    attended = rehearsal_params[:went]
     
     if student_id
       attendance = Attendance.find_or_create_by(rehearsal_id: @rehearsal.id, student_id: student_id)
       case 
-      when !params[:rehearsal][:going].nil?
+      when !attending.nil?
         attendance = attendance.update(going: attending)
         redirect_to rehearsal_path(@rehearsal)
-      when !params[:rehearsal][:went].nil?
+      when !attended.nil?
         attendance = attendance.update(went: attended)
         redirect_to rehearsal_path(@rehearsal)
       end
+      
     else
       @rehearsal.update(rehearsal_params)
       redirect_to rehearsal_path(@rehearsal), notice: "Rehearsal for #{@rehearsal.event.name} was successfully updated."
+      
     end
   end
   
   def destroy
-    @rehearsal = Rehearsal.find(params[:id])
     @rehearsal.destroy
     redirect_to rehearsals_path, notice: "Rehearsal for #{@rehearsal.event.name} was destroyed."
   end
   
   private
   
+  def set_rehearsal
+    begin 
+      @rehearsal = current_user.rehearsals.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      @rehearsal = nil
+      redirect_to rehearsals_path, notice: "Rehearsal record not found."
+    else
+      @rehearsal = current_user.rehearsals.find(params[:id])
+    end
+  end
+  
   def rehearsal_params
-    params.require(:rehearsal).permit(:event_id, :venue, :time, :student_id, :going)
+    params.require(:rehearsal).permit(:event_id, :venue, :time, :student_id, :going, :went)
   end
 end
