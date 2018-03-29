@@ -1,0 +1,12 @@
+<tr>
+ <td><%= event.time.strftime("%B %-d, %Y") %> at <%= event.time.strftime("%k:%M")%></td>
+ <td><%= link_to event.name, event_path(event) %></td>
+ <td><%= event.venue %></td>
+ <td><%= event.rehearsals.count %></td>
+ <td>
+ <%= form_for event, method: :delete do |f| %>
+   <%= f.submit "Delete" %>
+ <% end %>
+ </td>
+</tr>
+ 
