@@ -30,7 +30,7 @@
       <li class="list-group-item">
        <%= link_to "Add New Entry", new_student_entry_path(@student, @entry), class: "btn btn-sm btn-primary" %>
       </li>
-      <%= render @entries %>
+      <%= render @student.entries %>
     </ul> 
   </div>
   
