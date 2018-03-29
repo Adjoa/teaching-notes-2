@@ -1,3 +1,5 @@
+<%= render "shared/error_messages", :target => event %>
+
 <div class="card w-75 mx-auto">
   <div class="card-body">
     <%= form_for @event do |f| %>
@@ -16,7 +18,7 @@
       </div>
     </fieldset>
       
-    <%= link_to "Cancel", rehearsals_path, class: "btn btn-sm btn-secondary" %>
+    <%= link_to "Cancel", events_path, class: "btn btn-sm btn-secondary" %>
     <%= f.submit %>
     <% end %>
   </div>
