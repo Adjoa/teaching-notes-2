@@ -1,7 +1,7 @@
 class Student < ApplicationRecord
   belongs_to :user
-  has_many :entries
-  has_many :attendances
+  has_many :entries, dependent: :destroy
+  has_many :attendances, dependent: :destroy
   has_many :rehearsals, through: :attendances
   
   validates :name, presence: true

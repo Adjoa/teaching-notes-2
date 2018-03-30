@@ -13,8 +13,8 @@ class User < ApplicationRecord
     end      
   end
   
-  has_many :students
+  has_many :students, dependent: :destroy
   has_many :entries, through: :students
-  has_many :events
+  has_many :events, dependent: :destroy
   has_many :rehearsals, through: :events
 end
