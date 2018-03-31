@@ -4,6 +4,7 @@ class EntriesController < ApplicationController
   def show
   end
   
+  
   def new
     student = current_user.students.find(params[:student_id])
     @entry = student.entries.build
@@ -13,7 +14,7 @@ class EntriesController < ApplicationController
     @student = current_user.students.find(params[:student_id])
     @entry = @student.entries.new(entry_params)
     if @entry.save
-      redirect_to student_path(@entry.student), notice: "Added new entry for #{@student.name}." 
+      redirect_to student_path(@entry.student), notice: "Added new entry for #{@entry.student.name}." 
     else
       render :new
     end
@@ -23,7 +24,8 @@ class EntriesController < ApplicationController
   end 
   
   def update
-    if @entry.update(entry_params)
+    @entry.update(entry_params)
+    if @entry.valid?
       redirect_to student_entry_path(@entry.student, @entry), notice: "Entry was successfully updated."
     else
       render :edit
@@ -41,13 +43,10 @@ class EntriesController < ApplicationController
     student = current_user.students.find_by(id: params[:student_id])
     
     if student  
-      begin
-        @entry = student.entries.find(params[:id])
-      rescue ActiveRecord::RecordNotFound
-        @entry = nil
+      @entry = student.entries.find_by(id: params[:id])
+      if @entry.nil?
         redirect_to student_path(student), notice: "Record not found."
       else
-        student = current_user.students.find(params[:student_id])
         @entry = student.entries.find(params[:id])
       end
     else
