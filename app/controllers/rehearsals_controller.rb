@@ -11,7 +11,7 @@ class RehearsalsController < ApplicationController
   end
   
   def create
-    event = Event.find(params[:rehearsal][:event_id])
+    event = current_user.events.find(rehearsal_params[:event_id])
     @rehearsal = event.rehearsals.build(rehearsal_params)
     if @rehearsal.save
       redirect_to rehearsals_path, notice: "Added new rehearsal for #{event.name}."
