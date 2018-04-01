@@ -1,10 +1,6 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
   
-  def show
-  end
-  
-  
   def new
     student = current_user.students.find(params[:student_id])
     @entry = student.entries.build
@@ -18,6 +14,9 @@ class EntriesController < ApplicationController
     else
       render :new
     end
+  end
+  
+  def show
   end
   
   def edit

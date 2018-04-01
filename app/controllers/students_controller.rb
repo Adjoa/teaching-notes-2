@@ -5,10 +5,6 @@ class StudentsController < ApplicationController
     @students = current_user.students
   end
   
-  def show
-    @entry = current_user.students.find(params[:id]).entries.build
-  end
-  
   def new
     @student = current_user.students.build
   end
@@ -20,6 +16,10 @@ class StudentsController < ApplicationController
     else
       render :new
     end
+  end
+  
+   def show
+    @entry = current_user.students.find(params[:id]).entries.build
   end
   
   def edit
