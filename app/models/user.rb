@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  has_many :students, dependent: :destroy
+  has_many :entries, through: :students
+  has_many :events, dependent: :destroy
+  has_many :rehearsals, through: :events
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -12,9 +17,4 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end      
   end
-  
-  has_many :students, dependent: :destroy
-  has_many :entries, through: :students
-  has_many :events, dependent: :destroy
-  has_many :rehearsals, through: :events
 end
