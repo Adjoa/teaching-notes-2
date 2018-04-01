@@ -2,7 +2,6 @@
 
 <div class="card w-50 mx-auto">
   <div class="card-body">
-  <fieldset>
     <legend><strong><%= entry.student.name %></strong></legend>
     <%= form_for [entry.student, entry] do |f| %>
     <div class="form-group">
@@ -11,9 +10,8 @@
     <div class="form-group">
     <%= f.text_area :content, class: "form-control", placeholder: "Start writing..." %>
     </div>
-  </fieldset>
   <%= link_to "Cancel", student_path(entry.student), class: "btn btn-sm btn-secondary" %>
-  <%= f.submit %>
+  <%= f.submit "Create Entry" %>
   <% end %>
   </div>
 </div> 
