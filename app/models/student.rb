@@ -3,6 +3,7 @@ class Student < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :attendances, dependent: :destroy
   has_many :rehearsals, through: :attendances
+  has_many :comments, dependent: :destroy
   
   validates :name, presence: true
   validates :email, 
