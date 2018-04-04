@@ -7,7 +7,8 @@ class RehearsalsController < ApplicationController
   end
   
   def new
-    @rehearsal = Rehearsal.new
+    @events = current_user.events 
+    @rehearsal = current_user.rehearsals.build
   end
   
   def create
