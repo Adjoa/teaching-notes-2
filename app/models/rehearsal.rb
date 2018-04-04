@@ -3,7 +3,7 @@ class Rehearsal < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :students, through: :attendances
   has_many :comments, dependent: :destroy
-  accepts_nested_attributes_for :comments
+  
   delegate :user, :to => :event, :allow_nil => true
   
   validates :venue, presence: true
