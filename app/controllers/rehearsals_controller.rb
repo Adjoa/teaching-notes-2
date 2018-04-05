@@ -23,6 +23,7 @@ class RehearsalsController < ApplicationController
   
   def show
     @students = current_user.students
+    @rehearsal.comments.build
   end
   
   def edit
@@ -43,11 +44,9 @@ class RehearsalsController < ApplicationController
         attendance = attendance.update(went: attended)
         redirect_to rehearsal_path(@rehearsal)
       end
-      
     else
       @rehearsal.update(rehearsal_params)
       redirect_to rehearsal_path(@rehearsal), notice: "Rehearsal for #{@rehearsal.event.name} was successfully updated."
-      
     end
   end
   
@@ -70,6 +69,7 @@ class RehearsalsController < ApplicationController
   end
   
   def rehearsal_params
+    raise params.inspect
     params.require(:rehearsal).permit(:event_id, :venue, :time, :student_id, :going, :went)
   end
 end
