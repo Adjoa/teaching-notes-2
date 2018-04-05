@@ -22,6 +22,9 @@
   <li class="nav-item">
     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#rehearsals" role="tab" aria-controls="profile" aria-selected="false">Rehearsals</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="profile" aria-selected="false">Comments</a>
+  </li>
 </ul>
 
 <div class="tab-content" id="myTabContent">
@@ -47,6 +50,14 @@
         </thead>
         <%= render @student.rehearsals_attending %>
       </table>
+    </ul> 
+  </div>
+  
+   <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+    <ul class="list-group list-group-flush">
+    <% @student.comments.each do |comment| %>
+      <p>Commented on rehearsal for <%= comment.rehearsal.event.name %> saying: <%= comment.content %></p>
+    <% end %>
     </ul> 
   </div>
 </div>
