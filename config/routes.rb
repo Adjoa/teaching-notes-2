@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   resources :rehearsals
   resources :events
+  resources :comments, only: [:create]
   
   get '*a', :to => 'errors#routing'
 end
