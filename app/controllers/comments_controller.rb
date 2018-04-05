@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    raise params.inspect
     params.require(:comment).permit(:content, :rehearsal_id, :student_id)
   end
 end
