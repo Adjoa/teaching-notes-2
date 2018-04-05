@@ -69,7 +69,6 @@ class RehearsalsController < ApplicationController
   end
   
   def rehearsal_params
-    raise params.inspect
     params.require(:rehearsal).permit(:event_id, :venue, :time, :student_id, :going, :went)
   end
 end
