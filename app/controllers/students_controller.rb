@@ -3,6 +3,11 @@ class StudentsController < ApplicationController
   
   def index
     @students = current_user.students
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @students }
+    end
   end
   
   def show
