@@ -36,7 +36,8 @@ gem 'omniauth-facebook'
 gem "bootstrap-sass", "~> 3.1.1"
 # Autoload dotenv in Rails.
 gem 'dotenv-rails', '~> 2.2', '>= 2.2.1'
-
+# ActiveModel serializer
+gem 'active_model_serializers', '~> 0.10.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
