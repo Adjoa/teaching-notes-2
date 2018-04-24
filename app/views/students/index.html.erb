@@ -12,5 +12,12 @@
       </th>
     </tr>
   </thead>
-  <%= render @students %>
+  <tbody>
+    <%= render @students %>
+    <tr>
+      <td>
+        <%= link_to "Load More", students_path(:json), id: "load-more", class: "btn btn-sm btn-primary" %>
+      </td>
+    </tr>
+  </tbody>
 </table>
