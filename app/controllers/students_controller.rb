@@ -2,7 +2,14 @@ class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   
   def index
-    @students = current_user.students
+    if params[:id]
+      binding.pry
+      @students = current_user.students.where('id < ?', params[:id]).limit(2)
+    else
+      @students = current_user.students[0]
+    end
+    
+    # @students = current_user.students
     
     respond_to do |format|
       format.html
