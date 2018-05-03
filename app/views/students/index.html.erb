@@ -14,10 +14,10 @@
   </thead>
   <tbody>
     <%= render @students %>
-    <tr>
+    <div id="new-students"></div>
+    <tr id="tr-load-more">
       <td>
-        <%= link_to "Load More", students_path(:json), id: "load-more", class: "btn btn-sm btn-primary" %>
-        <%#= link_to "Load More", id: "load-more", class: "btn btn-sm btn-primary" %>
+        <%= link_to "Load More", more_students_path(:json), id: "load-more", class: "btn btn-sm btn-primary" %>
       </td>
     </tr>
   </tbody>
