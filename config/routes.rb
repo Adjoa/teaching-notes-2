@@ -8,6 +8,8 @@ Rails.application.routes.draw do
    resources :entries, except: [:index]
   end
   
+  get '/more_students', :to => 'students#more'
+  
   resources :rehearsals
   resources :events
   resources :comments, only: [:create]
