@@ -2,19 +2,18 @@ class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   
   def index
+    @students = current_user.students.first
+  end
+  
+  def more
     if params[:id]
-      binding.pry
-      @students = current_user.students.where('id < ?', params[:id]).limit(2)
+      @students = current_user.students.where('id > ?', params[:id]).limit(2)
     else
-      @students = current_user.students[0]
+      id = current_user.students.first.id
+      @students = current_user.students.where('id > ?', id).limit(2)
     end
     
-    # @students = current_user.students
-    
-    respond_to do |format|
-      format.html
-      format.json { render json: @students }
-    end
+    render json: @students
   end
   
   def show
@@ -48,7 +47,8 @@ class StudentsController < ApplicationController
   
   def destroy
     @student.destroy
-    redirect_to students_path, notice: "Student record for #{@student.name} was destroyed."
+    # redirect_to students_path, notice: "Student record for #{@student.name} was destroyed."
+    # TODO: Add flash notice without redirect
   end
   
   private
