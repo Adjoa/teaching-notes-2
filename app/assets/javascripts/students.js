@@ -1,60 +1,66 @@
 $(document).ready(() => {
   $("a#load-more").on("click", function(e) { 
-    // alert("You clicked this link!!!"); 
-    //Fire some AJAX 
     e.preventDefault(); 
+    
     let last_id = $('tr.student-record').last().attr('data-id');
     const url = `${this.href}?id=${last_id}`
     console.log(url)
-    $.get(url, function(response) {
-      console.log(response)
-    });
-    //GET a response
     
+    $.ajax({
+      method: "GET",
+      url: url,
+    }).success(function( json ) {
+      // $('#tr-load-more').hide()
+      
+      json['data'].forEach(function(studentJson) {
+        let student = new Student(studentJson)
+        let studentRow = student.renderStudentRow()
+        
+        $('tbody').append(studentRow)
+        
+        $(`button#studentid-${student.id}`).click(function(event) {
+          event.preventDefault()
+          
+          $.ajax({
+            method: "DELETE",
+            url: `/students/${student.id}`
+          }).done(function() {
+              console.log("Student record deleted");
+              $(`[data-id=${student.id}]`).hide();
+            });
+        })
+      });
+    });
   })
 })
 
-var obj = {
-  name: "Cernan",
-  sayName: function() {
-    console.log(this.name)
-  }
+
+function Student(studentJson) {
+  this.id = studentJson.id;
+  this.name = studentJson.attributes.name;
+  this.email = studentJson.attributes.email;
 }
 
+Student.prototype.getId = function() {
+  return `${this.id}`
+}
 
-// $(document).ready(() => {
-//   attachListeners()
-// });
+Student.prototype.getName = function() {
+  return `<td>${this.name}</td>`
+}
 
-// function attachListeners() {
-//   $('a#load-more').on('click', getStudents)
-// }
+Student.prototype.getEmail = function() {
+  return `<td>${this.email}</td>`
+}
 
-// function getStudents(e) {
-//     // $('a#load-more').hide();
-//     let last_id = $('tr.student-record').last().attr('data-id');
-    
-//     // $.get(this.href, { id: last_id }, function(response) {
-//     //     console.log(response)
-//     //   }, "json");
-
-//     e.preventDefault();
-//     const url = `${this.href}?id=${last_id}`
-//     // $.get('/students.json', (studentRecords) => {
-//     debugger;
-//     $.get(url, (studentRecords) => {
-//       debugger;
-//       if(studentRecords.data.length) {
-//         studentRecords.data.forEach(addStudent)
-//       }
-//     }).done(function() {
-//       debugger;
-//       console.log("Done!")
-//     })
-// }
-
-// function addStudent(student) {
-//   // $('#students').append(`<tr>Hello, world!</tr>`)
-//   $('#students').append('<%= escape_javascript(render(:partial => @students)) %>')
-//   // $('.container').append('<%= escape_javascript(render(:partial => @users)) %>')
-// }
+Student.prototype.renderStudentRow = function() {
+  return '<tr class="student-record" data-id="' + this.getId() + '">' +
+  this.getName() +
+  this.getEmail() +
+  '<td><a href="/students/' + this.getId() + '">View</a></td>' +
+  '<td><a href="/students/' + this.getId() + '/edit">Edit</a></td>' +
+  '<td>' +
+  '<button id=studentid-' + this.getId() + '>' + 'Delete' + '</button>' +
+  '</td>' +
+  '</tr>'
+}
