@@ -1,39 +1,42 @@
-$(document).ready(() => {
-  $("a#load-more").on("click", function(e) { 
-    e.preventDefault(); 
+$(document).on('turbolinks:load', function() {
+  $("a#load-more").on("click", function(event) { 
+    event.preventDefault(); 
     
     let last_id = $('tr.student-record').last().attr('data-id');
     const url = `${this.href}?id=${last_id}`
-    console.log(url)
-    
-    $.ajax({
-      method: "GET",
-      url: url,
-    }).success(function( json ) {
-      // $('#tr-load-more').hide()
-      
-      json['data'].forEach(function(studentJson) {
-        let student = new Student(studentJson)
-        let studentRow = student.renderStudentRow()
-        
-        $('tbody').append(studentRow)
-        
-        $(`button#studentid-${student.id}`).click(function(event) {
-          event.preventDefault()
-          
-          $.ajax({
-            method: "DELETE",
-            url: `/students/${student.id}`
-          }).done(function() {
-              console.log("Student record deleted");
-              $(`[data-id=${student.id}]`).hide();
-            });
-        })
-      });
-    });
+
+    loadMoreStudents(url);
   })
 })
 
+function loadMoreStudents(url) {
+  $.get(url).success(function( students ) {
+    students['data'].forEach(function(student) {
+      createNewStudentRow(student);
+    });
+  });
+}
+
+function createNewStudentRow(studentJson) {
+  let student = new Student(studentJson);
+  let studentRow = student.renderStudentRow();
+  
+  $('tbody').append(studentRow);
+  addDeleteEventListener(student.id);
+}
+
+function addDeleteEventListener(studentId) {
+  $(`button#studentid-${studentId}`).click(function(event) {
+    event.preventDefault()
+    
+  $.ajax({
+    method: "DELETE",
+    url: `/students/${studentId}`
+  }).done(function() {
+      $(`[data-id=${studentId}]`).remove();
+    });
+  });
+}
 
 function Student(studentJson) {
   this.id = studentJson.id;
