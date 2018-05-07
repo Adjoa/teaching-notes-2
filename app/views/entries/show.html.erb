@@ -3,6 +3,7 @@
     <h5 class="card-title"><%= @entry.title %></h5>
     <p class="card-text"><%= @entry.content %></p>
     <%= link_to "Back", student_path(@entry.student), class: "btn btn-sm btn-secondary" %>
-    <%= link_to "Edit", edit_student_entry_path(@entry.student, @entry), class: "btn btn-sm btn-primary" %>
+    <%= link_to "Edit", edit_student_entry_path(@entry.student, @entry), id: "edit-btn", class: "btn btn-sm btn-secondary" %>
+    <button class="js-next btn btn-sm btn-primary" student-id= "<%= @entry.student.id %>" data-id="<%= @entry.id %>">View Next</button> 
   </div>
 </div>
