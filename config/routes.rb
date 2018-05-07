@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   root 'students#index'
   
   resources :students do
+   get '/entries/ids', :to => 'entries#get_ids'
    resources :entries, except: [:index]
+   get '/entries/:id/entry_data', :to => 'entries#entry_data'
   end
   
   get '/more_students', :to => 'students#more'
