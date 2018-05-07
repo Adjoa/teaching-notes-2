@@ -4,7 +4,6 @@ class EntriesController < ApplicationController
   def show
   end
   
-  
   def new
     student = current_user.students.find(params[:student_id])
     @entry = student.entries.build
@@ -35,6 +34,18 @@ class EntriesController < ApplicationController
   def destroy
     @entry.destroy
     redirect_to student_path(@entry.student), notice: "#{@entry.title} was destroyed."
+  end
+  
+  def entry_data
+    entry = Entry.find(params[:id])
+    render json: entry
+  end
+  
+  def get_ids
+    # binding.pry
+    student = current_user.students.find_by(id: params[:student_id])
+    @entries = student.entries
+    render json: @entries
   end
   
   private
