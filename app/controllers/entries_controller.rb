@@ -42,10 +42,9 @@ class EntriesController < ApplicationController
   end
   
   def get_ids
-    # binding.pry
     student = current_user.students.find_by(id: params[:student_id])
-    @entries = student.entries
-    render json: @entries
+    entries = student.entries
+    render json: entries
   end
   
   private
