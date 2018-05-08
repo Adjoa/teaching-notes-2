@@ -2,8 +2,18 @@ class RehearsalsController < ApplicationController
   before_action :set_rehearsal, only: [:show, :edit, :update, :destroy]
   
   def index
-    @rehearsals = current_user.rehearsals
-    @students = current_user.students
+    if params[:event_id]
+      @event = current_user.events.find(params[:event_id])
+      @rehearsals = @event.rehearsals
+    else
+      @rehearsals = current_user.rehearsals
+      @students = current_user.students
+    end
+    
+    respond_to do |format|
+      format.html
+      format.json { render :json => @rehearsals }
+    end
   end
   
   def new
