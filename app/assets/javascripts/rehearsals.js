@@ -12,7 +12,9 @@ function loadRehearsals(url) {
   $.get(url).success(function(rehearsals) {
     rehearsals["data"].forEach(function(rehearsal) {
       let rehearsalObj = new Rehearsal(rehearsal);
-      console.log(rehearsalObj)
+      let rehearsalRow = rehearsalObj.renderRehearsalRow();
+      
+      $('#rehearsals').append(rehearsalRow);
     });
   });
 }
@@ -28,7 +30,8 @@ Rehearsal.prototype.getId = function() {
 }
 
 Rehearsal.prototype.getTime = function() {
- return `<td>${this.time.strftime("%B %-d, %Y")} at ${this.time.strftime("%k:%M")}</td>`
+// return `<td>${this.time} at ${this.time}</td>`
+return `<td>${this.time}</td>`
 }
 
 Rehearsal.prototype.getVenue = function() {
