@@ -25,7 +25,7 @@ function createRehearsalRow(rehearsalJson) {
 
 function Rehearsal(rehearsalJson) {
   this.id = rehearsalJson.id;
-  this.time = rehearsalJson.attributes.time;
+  this.time = new Date(rehearsalJson.attributes.time);
   this.venue = rehearsalJson.attributes.venue;
 }
 
@@ -34,8 +34,9 @@ Rehearsal.prototype.getId = function() {
 }
 
 Rehearsal.prototype.getTime = function() {
-// return `<td>${this.time} at ${this.time}</td>`
-return `<td>${this.time}</td>`
+let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+console.log(this.time);
+return `<td>${months[this.time.getMonth()]} ${this.time.getDate()}, ${this.time.getFullYear()}</td>`
 }
 
 Rehearsal.prototype.getVenue = function() {
