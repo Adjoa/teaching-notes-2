@@ -35,4 +35,10 @@ Rehearsal.prototype.getVenue = function() {
   return `<td>${this.venue}</td>`  
 }
 
-
+Rehearsal.prototype.renderRehearsalRow = function() {
+  return '<tr>' +
+  '<a href="/rehearsals/' + this.getId() +'">Go to Rehearsal</a>' +
+  this.getTime() +
+  this.getVenue() +
+  '</tr>'
+}
