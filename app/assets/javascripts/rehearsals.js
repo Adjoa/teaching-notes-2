@@ -22,3 +22,17 @@ function Rehearsal(rehearsalJson) {
   this.time = rehearsalJson.attributes.time;
   this.venue = rehearsalJson.attributes.venue;
 }
+
+Rehearsal.prototype.getId = function() {
+  return `${this.id}`
+}
+
+Rehearsal.prototype.getTime = function() {
+ return `<td>${this.time.strftime("%B %-d, %Y")} at ${this.time.strftime("%k:%M")}</td>`
+}
+
+Rehearsal.prototype.getVenue = function() {
+  return `<td>${this.venue}</td>`  
+}
+
+
