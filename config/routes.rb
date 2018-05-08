@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   get '/more_students', :to => 'students#more'
   
   resources :rehearsals
-  resources :events
+  
+  resources :events do
+    resources :rehearsals, only: [:index]
+  end
+  
   resources :comments, only: [:create]
   
   get '*a', :to => 'errors#routing'
