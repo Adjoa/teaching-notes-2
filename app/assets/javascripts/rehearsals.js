@@ -4,11 +4,21 @@ $(document).on('turbolinks:load', function(){
     
     const rehearsalsUrl = $('a#load_rehearsals').attr("href");
     
-    $.ajax({
-      method: "GET",
-      url: rehearsalsUrl
-    }).done(function(response) {
-      console.log(response)
-    });
+    loadRehearsals(rehearsalsUrl);
   });  
 });
+
+function loadRehearsals(url) {
+  $.get(url).success(function(rehearsals) {
+    rehearsals["data"].forEach(function(rehearsal) {
+      let rehearsalObj = new Rehearsal(rehearsal);
+      console.log(rehearsalObj)
+    });
+  });
+}
+
+function Rehearsal(rehearsalJson) {
+  this.id = rehearsalJson.id;
+  this.time = rehearsalJson.attributes.time;
+  this.venue = rehearsalJson.attributes.venue;
+}
