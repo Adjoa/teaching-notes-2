@@ -11,12 +11,16 @@ $(document).on('turbolinks:load', function(){
 function loadRehearsals(url) {
   $.get(url).success(function(rehearsals) {
     rehearsals["data"].forEach(function(rehearsal) {
-      let rehearsalObj = new Rehearsal(rehearsal);
-      let rehearsalRow = rehearsalObj.renderRehearsalRow();
-      
-      $('#rehearsals').append(rehearsalRow);
+      createRehearsalRow(rehearsal);
     });
   });
+}
+
+function createRehearsalRow(rehearsalJson) {
+  let rehearsal = new Rehearsal(rehearsalJson);
+  let rehearsalRow = rehearsal.renderRehearsalRow();
+  
+  $('#rehearsals').append(rehearsalRow);
 }
 
 function Rehearsal(rehearsalJson) {
