@@ -36,7 +36,7 @@ function createNewStudentRow(studentJson) {
   let student = new Student(studentJson);
   let studentRow = student.renderStudentRow();
   
-  $('tbody').append(studentRow);
+  $(studentRow).insertBefore('#tr-load-more');
   addDeleteEventListener(student.id);
 }
 
