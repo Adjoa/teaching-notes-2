@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+$(document).ready(function() {
   let studentId = $(".js-next").attr("student-id"); 
   let idsUrl = `/students/${studentId}/entries/ids`;
   let allIds = [];
