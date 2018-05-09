@@ -1,10 +1,13 @@
 $(document).on('turbolinks:load', function(){
-  $('a#load_rehearsals').on("click", function(event) {
+  $('a#load_rehearsals').one("click", function(event) {
     event.preventDefault();
     
     const rehearsalsUrl = $('a#load_rehearsals').attr("href");
     
     loadRehearsals(rehearsalsUrl);
+    $('a#load_rehearsals').attr("href", "#").on("click", function(event) {
+      event.preventDefault();
+    });
   });  
 });
 
