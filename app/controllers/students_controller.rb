@@ -49,8 +49,6 @@ class StudentsController < ApplicationController
   
   def destroy
     @student.destroy
-    # redirect_to students_path, notice: "Student record for #{@student.name} was destroyed."
-    # TODO: Add flash notice without redirect
   end
   
   private
