@@ -27,7 +27,7 @@ class StudentsController < ApplicationController
   def create
     @student = current_user.students.build(student_params)
     if @student.save
-      redirect_to student_path(@student), notice: 'Student record was successfully created.'
+      render json: @student
     else
       render :new
     end
