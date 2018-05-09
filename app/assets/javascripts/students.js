@@ -1,28 +1,27 @@
-$(document).ready(function() {
+$(document).ready(() => {
+  attachStudentListeners()
+})
+
+function attachStudentListeners() {
   $("a#load-more").on("click", function(event) { 
-    event.preventDefault(); 
-    
     let last_id = $('tr.student-record').last().attr('data-id');
     const url = `${this.href}?id=${last_id}`
 
     loadMoreStudents(url);
+    
+    event.preventDefault();
   })
   
   $('#new_student').on('submit', function(event) {
-    $.ajax({
-      type: "POST",
-      url: this.action,
-      data: $(this).serialize(),
-      success: function(response) {
-        console.log(response)
+    $.post(this.action, $(this).serialize())
+      .done(function(response) {
         $('fieldset').html("")
         $('fieldset').append(response)
-      }
-    });
+      })
     
     event.preventDefault()
   })
-})
+}
 
 function loadMoreStudents(url) {
   $.get(url).success(function( students ) {
