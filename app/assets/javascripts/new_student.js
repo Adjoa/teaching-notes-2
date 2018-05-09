@@ -1,16 +1,16 @@
 $(document).on('turbolinks:load', function() {
   $('#new_student').on('submit', function(event) {
-    event.preventDefault()
-    
     $.ajax({
-      type: this.method,
+      type: "POST",
       url: this.action,
       data: $(this).serialize(),
       success: function(response) {
-        console.log(response);
-        // renderStudentPage()
+        console.log(response)
+        $('fieldset').html("")
+        $('fieldset').append(response)
       }
-    })
+    });
+    
+    event.preventDefault()
   })
 })
-
