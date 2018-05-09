@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+$(document).ready(function() {
   $('a#load_rehearsals').one("click", function(event) {
     event.preventDefault();
     
