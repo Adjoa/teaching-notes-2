@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+$(document).ready(function() {
   $("a#load-more").on("click", function(event) { 
     event.preventDefault(); 
     
@@ -6,6 +6,21 @@ $(document).on('turbolinks:load', function() {
     const url = `${this.href}?id=${last_id}`
 
     loadMoreStudents(url);
+  })
+  
+  $('#new_student').on('submit', function(event) {
+    $.ajax({
+      type: "POST",
+      url: this.action,
+      data: $(this).serialize(),
+      success: function(response) {
+        console.log(response)
+        $('fieldset').html("")
+        $('fieldset').append(response)
+      }
+    });
+    
+    event.preventDefault()
   })
 })
 
