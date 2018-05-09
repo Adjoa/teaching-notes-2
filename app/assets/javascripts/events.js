@@ -3,8 +3,8 @@ $(document).ready(function() {
     event.preventDefault();
     
     const rehearsalsUrl = $('a#load_rehearsals').attr("href");
-    
     loadRehearsals(rehearsalsUrl);
+    
     $('a#load_rehearsals').attr("href", "#").on("click", function(event) {
       event.preventDefault();
     });
