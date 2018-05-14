@@ -6,13 +6,7 @@ class StudentsController < ApplicationController
   end
   
   def more
-    if params[:id]
-      @students = current_user.students.where('id > ?', params[:id]).limit(2)
-    else
-      id = current_user.students.first.id
-      @students = current_user.students.where('id > ?', id).limit(2)
-    end
-    
+    @students = current_user.students.where('id > ?', params[:id]).limit(2)
     render json: @students
   end
   
