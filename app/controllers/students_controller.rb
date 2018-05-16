@@ -21,9 +21,10 @@ class StudentsController < ApplicationController
   def create
     @student = current_user.students.build(student_params)
     if @student.save 
-      respond_to do |format|
-        format.html { render 'show.html', :layout => false }
-      end
+      # respond_to do |format|
+        # format.html { render 'show.html', :layout => false }
+      # end
+      render json: @student
     else
       render :new
     end
