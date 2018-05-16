@@ -15,8 +15,10 @@ function attachStudentListeners() {
   $('#new_student').on('submit', function(event) {
     $.post(this.action, $(this).serialize())
       .done(function(response) {
+        let newStudent = new Student(response['data']);
         $('fieldset').html("")
-        $('fieldset').append(response)
+        let newStudentPage = newStudent.showNewStudentPage()
+        $('div#new-student-js').append(newStudentPage)
       })
     
     event.preventDefault()
@@ -58,26 +60,30 @@ function Student(studentJson) {
   this.email = studentJson.attributes.email;
 }
 
-Student.prototype.getId = function() {
-  return `${this.id}`
-}
-
-Student.prototype.getName = function() {
-  return `<td>${this.name}</td>`
-}
-
-Student.prototype.getEmail = function() {
-  return `<td>${this.email}</td>`
-}
-
 Student.prototype.renderStudentRow = function() {
-  return '<tr class="student-record" data-id="' + this.getId() + '">' +
-  this.getName() +
-  this.getEmail() +
-  '<td><a href="/students/' + this.getId() + '">View</a></td>' +
-  '<td><a href="/students/' + this.getId() + '/edit">Edit</a></td>' +
-  '<td>' +
-  '<button id=studentid-' + this.getId() + '>' + 'Delete' + '</button>' +
-  '</td>' +
-  '</tr>'
+  return `<tr class="student-record" data-id="${this.id}">
+            <td>${this.name}</td>
+            <td>${this.email}</td>
+            <td><a href="/students/${this.id}">View</a></td>
+            <td><a href="/students/${this.id}/edit">Edit</a></td>
+            <td>
+              <button id=studentid-${this.id}>Delete</button>
+            </td>
+          </tr>`
+}
+
+Student.prototype.showNewStudentPage = function() {
+  return `<fieldset>
+          <legend><h2>Student Info</h2></legend>
+            <table>
+              <tr>
+                <td><strong>Name</strong></td>
+                <td>${this.name}</td>
+              </tr>
+              <tr>
+                <td><strong>Email</strong></td>
+                <td>${this.email}</td>
+              </tr>
+            </table>
+          </fieldset>`
 }
