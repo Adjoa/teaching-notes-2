@@ -1,4 +1,5 @@
 <%= javascript_include_tag 'application', params[:controller], 'data-turbolinks-track': 'reload' %>
+<div id="new-student-js"></div>
 <fieldset>
 <legend><h2>New Student</h2></legend>
 <%= render partial: "form", locals: {student: @student} %>
