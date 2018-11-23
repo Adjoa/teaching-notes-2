@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+- 2.5.1
+branches:
+  only:
+  - travis
+script:
+- bundle exec rake db:migrate && bundle exec rake db:seed
